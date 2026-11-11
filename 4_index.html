@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>String Comparison</title>
+</head>
+
+<body>
+
+    <h2>String Comparison Program</h2>
+
+    Enter First String:
+    <input type="text" id="s1"><br><br>
+
+    Enter Second String:
+    <input type="text" id="s2"><br><br>
+
+    <button onclick="compare()">Compare</button>
+
+    <p id="result"></p>
+
+    <script>
+        function compare() {
+
+            let a = document.getElementById("s1").value;
+            let b = document.getElementById("s2").value;
+
+            let output = "";
+
+            // 1. Loose Equality
+            if (a == b)
+                output += "Loose Equality: Equal<br>";
+            else
+                output += "Loose Equality: Not Equal<br>";
+
+            // 2. Strict Equality
+            if (a === b)
+                output += "Strict Equality: Equal<br>";
+            else
+                output += "Strict Equality: Not Equal<br>";
+
+            // 3. Case Insensitive Comparison
+            if (a.toLowerCase() == b.toLowerCase())
+                output += "Case Insensitive: Equal<br>";
+            else
+                output += "Case Insensitive: Not Equal<br>";
+
+            // 4. Length Comparison
+            if (a.length > b.length)
+                output += "String 1 is Longer<br>";
+            else if (a.length < b.length)
+                output += "String 2 is Longer<br>";
+            else
+                output += "Both have Same Length<br>";
+
+            // 5. Alphabetical Comparison
+            if (a < b)
+                output += "String 1 comes First<br>";
+            else if (a > b)
+                output += "String 2 comes First<br>";
+            else
+                output += "Both are Alphabetically Equal<br>";
+
+            document.getElementById("result").innerHTML = output;
+        }
+    </script>
+
+</body>
+
+</html>

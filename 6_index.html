@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Array Operations</title>
+</head>
+
+<body>
+
+    <h1>Array Operations</h1>
+
+    <h3>Create Array</h3>
+
+    Enter Array Size:
+    <input type="number" id="size">
+    <button onclick="setSize()">Set Size</button>
+    <br><br>
+
+    Enter Element:
+    <input type="text" id="element">
+    <button onclick="addElement()">Add Element</button>
+
+    <p id="position"></p>
+    <p id="msg"></p>
+
+    <h3>Created Array</h3>
+    <p id="display">[]</p>
+
+    <hr>
+
+    <h3>1. Remove By Index</h3>
+    <input type="number" id="index" placeholder="Enter index">
+    <button onclick="removeIndex()">Remove</button>
+    <p id="msg1"></p>
+    <p id="arr1">[]</p>
+
+    <h3>2. Remove By Value</h3>
+    <input type="text" id="value" placeholder="Enter value">
+    <button onclick="removeValue()">Remove</button>
+    <p id="msg2"></p>
+    <p id="arr2">[]</p>
+
+    <h3>3. Check Element</h3>
+    <input type="text" id="search" placeholder="Enter value">
+    <button onclick="checkElement()">Check</button>
+    <p id="msg3"></p>
+    <p id="arr3">[]</p>
+
+    <h3>4. Empty Array</h3>
+    <button onclick="emptyArray()">Empty Array</button>
+    <p id="msg4"></p>
+    <p id="arr4">[]</p>
+
+
+    <script>
+
+        let arr = [];
+        let size = 0;
+        let count = 0;
+
+        // Set Array Size
+        function setSize() {
+            size = Number(document.getElementById("size").value);
+
+            arr = [];
+            count = 0;
+
+            document.getElementById("display").innerHTML = "[]";
+            document.getElementById("position").innerHTML = "Enter element 1";
+            document.getElementById("msg").innerHTML = "Array created";
+        }
+
+        // Add Element
+        function addElement() {
+            let value = document.getElementById("element").value;
+
+            if (count < size && value != "") {
+                arr.push(value);
+                count++;
+
+                document.getElementById("display").innerHTML = arr.join(", ");
+
+                document.getElementById("position").innerHTML =
+                    count < size ? "Enter element " + (count + 1) : "Array is full";
+
+                document.getElementById("element").value = "";
+            }
+            else {
+                document.getElementById("msg").innerHTML = "Array is full or invalid input";
+            }
+        }
+
+        // Remove By Index
+        function removeIndex() {
+            let index = Number(document.getElementById("index").value);
+
+            if (index >= 0 && index < arr.length) {
+                arr.splice(index, 1);
+                count--;
+
+                document.getElementById("msg1").innerHTML = "Element removed";
+            }
+            else {
+                document.getElementById("msg1").innerHTML = "Invalid index";
+            }
+
+            document.getElementById("arr1").innerHTML = arr.join(", ") || "[]";
+        }
+
+        // Remove By Value
+        function removeValue() {
+            let value = document.getElementById("value").value;
+            let index = arr.indexOf(value);
+
+            if (index != -1) {
+                arr.splice(index, 1);
+                count--;
+
+                document.getElementById("msg2").innerHTML = "Element removed";
+            }
+            else {
+                document.getElementById("msg2").innerHTML = "Element not found";
+            }
+
+            document.getElementById("arr2").innerHTML = arr.join(", ") || "[]";
+        }
+
+        // Check Element
+        function checkElement() {
+            let value = document.getElementById("search").value;
+
+            if (arr.includes(value)) {
+                document.getElementById("msg3").innerHTML = "Element exists";
+            }
+            else {
+                document.getElementById("msg3").innerHTML = "Element does not exist";
+            }
+
+            document.getElementById("arr3").innerHTML = arr.join(", ") || "[]";
+        }
+
+        // Empty Array
+        function emptyArray() {
+            arr = [];
+            count = 0;
+
+            document.getElementById("arr4").innerHTML = "[]";
+            document.getElementById("msg4").innerHTML = "Array emptied";
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Area Calculator</title>
+</head>
+
+<body>
+
+    <h1>Area Calculator</h1>
+
+    <h2>Triangle</h2>
+    Side A: <input type="number" id="a"><br><br>
+    Side B: <input type="number" id="b"><br><br>
+    Side C: <input type="number" id="c"><br><br>
+
+    <button onclick="triangle()">Calculate</button>
+    <p id="result1"></p>
+
+    <hr>
+
+    <h2>Rectangle</h2>
+    Length: <input type="number" id="l"><br><br>
+    Width: <input type="number" id="w"><br><br>
+
+    <button onclick="rectangle()">Calculate</button>
+    <p id="result2"></p>
+
+    <hr>
+
+    <h2>Circle</h2>
+    Radius: <input type="number" id="r"><br><br>
+
+    <button onclick="circle()">Calculate</button>
+    <p id="result3"></p>
+
+
+    <script>
+
+        // Triangle Area using Heron's Formula
+        function triangle() {
+            let a = Number(document.getElementById("a").value);
+            let b = Number(document.getElementById("b").value);
+            let c = Number(document.getElementById("c").value);
+
+            let s = (a + b + c) / 2;
+
+            let area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+
+            document.getElementById("result1").innerHTML =
+                "Triangle Area = " + area.toFixed(2);
+        }
+
+
+        // Rectangle Area
+        function rectangle() {
+            let l = Number(document.getElementById("l").value);
+            let w = Number(document.getElementById("w").value);
+
+            let area = l * w;
+
+            document.getElementById("result2").innerHTML =
+                "Rectangle Area = " + area;
+        }
+
+
+        // Circle Area
+        function circle() {
+            let r = Number(document.getElementById("r").value);
+
+            let area = 3.14 * r * r;
+
+            document.getElementById("result3").innerHTML =
+                "Circle Area = " + area.toFixed(2);
+        }
+
+    </script>
+
+</body>
+
+</html>

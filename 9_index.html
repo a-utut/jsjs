@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Form</title>
+</head>
+
+<body>
+
+    <div id="formPage">
+        <h2>Student Information Form</h2>
+
+        <form id="myForm">
+
+            Name:
+            <input type="text" id="name"><br><br>
+
+            Email:
+            <input type="text" id="email"><br><br>
+
+            Phone:
+            <input type="text" id="phone"><br><br>
+
+            Gender:
+            <input type="radio" name="gender" value="Male">Male
+            <input type="radio" name="gender" value="Female">Female
+            <input type="radio" name="gender" value="Other">Other
+            <br><br>
+
+            Nationality:
+            <select id="nationality">
+                <option value="">Select</option>
+                <option>Indian</option>
+                <option>Other</option>
+            </select><br><br>
+
+            State:
+            <select id="state">
+                <option value="">Select</option>
+                <option>Maharashtra</option>
+                <option>Gujarat</option>
+                <option>Goa</option>
+                <option>Karnataka</option>
+            </select><br><br>
+
+            Address:
+            <textarea id="address"></textarea><br><br>
+
+            <button type="submit">Submit</button>
+
+        </form>
+    </div>
+
+    <div id="detailsPage" style="display:none">
+        <h2>Student Details</h2>
+        <p id="details"></p>
+        <button onclick="goHome()">Home</button>
+    </div>
+
+    <script>
+
+        let form = document.getElementById("myForm");
+
+        form.onsubmit = function(event) {
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            let gender = document.querySelector('input[name="gender"]:checked');
+            let nationality = document.getElementById("nationality").value;
+            let state = document.getElementById("state").value;
+            let address = document.getElementById("address").value;
+
+            if (name == "" || !/^[A-Za-z ]+$/.test(name)) {
+                alert("Enter valid name");
+            }
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert("Enter valid email");
+            }
+            else if (!/^[6-9][0-9]{9}$/.test(phone)) {
+                alert("Enter valid phone number");
+            }
+            else if (!gender) {
+                alert("Select gender");
+            }
+            else if (nationality == "") {
+                alert("Select nationality");
+            }
+            else if (state == "") {
+                alert("Select state");
+            }
+            else if (address.trim() == "") {
+                alert("Enter address");
+            }
+            else {
+
+                document.getElementById("details").innerHTML =
+                    "Name: " + name + "<br>" +
+                    "Email: " + email + "<br>" +
+                    "Phone: " + phone + "<br>" +
+                    "Gender: " + gender.value + "<br>" +
+                    "Nationality: " + nationality + "<br>" +
+                    "State: " + state + "<br>" +
+                    "Address: " + address;
+
+                document.getElementById("formPage").style.display = "none";
+                document.getElementById("detailsPage").style.display = "block";
+            }
+        };
+
+        function goHome() {
+            form.reset();
+
+            document.getElementById("detailsPage").style.display = "none";
+            document.getElementById("formPage").style.display = "block";
+        }
+
+    </script>
+
+</body>
+</html>

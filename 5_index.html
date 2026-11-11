@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Countdown Timer</title>
+</head>
+
+<body>
+
+    <h2>Countdown Timer</h2>
+
+    Select End Date and Time:
+    <input type="datetime-local" id="endDate">
+
+    <br><br>
+
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    <button onclick="resetTimer()">Reset</button>
+
+    <h3>Start Time: <span id="start">-</span></h3>
+    <h3>End Time: <span id="end">-</span></h3>
+
+    <h2 id="timer">00 : 00 : 00 : 00</h2>
+    <p id="message"></p>
+
+    <script>
+
+        let timer;
+
+        function startTimer() {
+
+            let end = new Date(document.getElementById("endDate").value);
+
+            if (!document.getElementById("endDate").value) {
+                alert("Select end date and time");
+                return;
+            }
+
+            let start = new Date();
+
+            if (end <= start) {
+                alert("Select a future date and time");
+                return;
+            }
+
+            document.getElementById("start").innerHTML = start.toLocaleString();
+            document.getElementById("end").innerHTML = end.toLocaleString();
+
+            clearInterval(timer);
+
+            function update() {
+
+                let now = new Date();
+                let diff = Math.floor((end - now) / 1000);
+
+                if (diff <= 0) {
+                    clearInterval(timer);
+                    document.getElementById("timer").innerHTML = "00 : 00 : 00 : 00";
+                    document.getElementById("message").innerHTML = "Time Expired!";
+                    return;
+                }
+
+                let days = Math.floor(diff / 86400);
+                let hours = Math.floor((diff % 86400) / 3600);
+                let minutes = Math.floor((diff % 3600) / 60);
+                let seconds = diff % 60;
+
+                document.getElementById("timer").innerHTML =
+                    days + " : " + hours + " : " + minutes + " : " + seconds;
+            }
+
+            document.getElementById("message").innerHTML = "";
+
+            update();
+
+            timer = setInterval(update, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timer);
+        }
+
+        function resetTimer() {
+
+            clearInterval(timer);
+
+            document.getElementById("timer").innerHTML = "00 : 00 : 00 : 00";
+            document.getElementById("message").innerHTML = "";
+
+            document.getElementById("start").innerHTML = "-";
+            document.getElementById("end").innerHTML = "-";
+
+            document.getElementById("endDate").value = "";
+        }
+
+    </script>
+
+</body>
+
+</html>

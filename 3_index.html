@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>String Operations</title>
+</head>
+
+<body>
+
+    <h2>String Operations</h2>
+
+    <!-- Reverse String -->
+    <h3>Reverse String</h3>
+    <input type="text" id="str1" placeholder="Enter string">
+    <button onclick="reverseString()">Reverse</button>
+    <p id="result1"></p>
+
+    <hr>
+
+    <!-- Replace Character -->
+    <h3>Replace Character</h3>
+    <input type="text" id="str2" placeholder="Enter string">
+    <input type="text" id="old" placeholder="Old character">
+    <input type="text" id="new" placeholder="New character">
+
+    <button onclick="replaceChar()">Replace</button>
+    <p id="result2"></p>
+
+    <hr>
+
+    <!-- Palindrome -->
+    <h3>Palindrome Check</h3>
+    <input type="text" id="str3" placeholder="Enter string">
+    <button onclick="checkPalindrome()">Check</button>
+    <p id="result3"></p>
+
+
+    <script>
+
+        // 1. Reverse String
+        function reverseString() {
+            let str = document.getElementById("str1").value;
+
+            let rev = str.split("").reverse().join("");
+
+            document.getElementById("result1").innerHTML = rev;
+        }
+
+
+        // 2. Replace Character
+        function replaceChar() {
+            let str = document.getElementById("str2").value;
+            let old = document.getElementById("old").value;
+            let newChar = document.getElementById("new").value;
+
+            let first = str.replace(old, newChar);
+            let all = str.replaceAll(old, newChar);
+
+            document.getElementById("result2").innerHTML =
+                "First: " + first + "<br>All: " + all;
+        }
+
+
+        // 3. Palindrome Check
+        function checkPalindrome() {
+            let str = document.getElementById("str3").value;
+
+            let rev = str.split("").reverse().join("");
+
+            if (str == rev) {
+                document.getElementById("result3").innerHTML = "Palindrome";
+            }
+            else {
+                document.getElementById("result3").innerHTML = "Not Palindrome";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

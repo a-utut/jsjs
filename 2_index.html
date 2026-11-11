@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Table Generator</title>
+</head>
+
+<body>
+
+    <h2>Table Generator</h2>
+
+    Enter a number:
+    <input type="number" id="num">
+
+    <button onclick="showTables()">Generate</button>
+
+    <div id="result"></div>
+
+    <script>
+
+        function showTables() {
+
+            let n = Number(document.getElementById("num").value);
+
+            let a = "<h3>For Loop</h3>";
+
+            let b = "<h3>While Loop</h3>";
+
+            let c = "<h3>Do While Loop</h3>";
+
+            // FOR LOOP
+            for (let i = 1; i <= 10; i++) {
+                a += n + " x " + i + " = " + (n * i) + "<br>";
+            }
+
+            // WHILE LOOP
+            let j = 1;
+
+            while (j <= 10) {
+                b += n + " x " + j + " = " + (n * j) + "<br>";
+                j++;
+            }
+
+            // DO WHILE LOOP
+            let k = 1;
+
+            do {
+                c += n + " x " + k + " = " + (n * k) + "<br>";
+                k++;
+            } while (k <= 10);
+
+            // DISPLAY ALL TABLES
+            document.getElementById("result").innerHTML = a + b + c;
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Change Background Color</title>
+</head>
+
+<body id="body">
+
+    <h1>Experiment 8</h1>
+
+    <p id="name" onmouseover="changeColor()" onmouseout="resetColor()">
+        Name: Gauravi Mutha
+    </p>
+
+    <p>Class: BE 7</p>
+    <p>Batch: P7</p>
+
+    <label>Roll Number:</label>
+    <input type="text" id="roll" placeholder="Enter Roll Number" onfocus="focusColor()" onblur="resetColor()"
+        oninput="validate()">
+
+    <script>
+
+        // Change color when mouse moves over name
+        function changeColor() {
+            document.body.style.backgroundColor = "lightblue";
+        }
+
+        // Change color when input is selected
+        function focusColor() {
+            document.body.style.backgroundColor = "lightpink";
+        }
+
+        // Reset background color
+        function resetColor() {
+            document.body.style.backgroundColor = "white";
+        }
+
+        // Allow only numbers
+        function validate() {
+            let x = document.getElementById("roll");
+            x.value = x.value.replace(/[^0-9]/g, "");
+        }
+
+    </script>
+
+</body>
+
+</html>

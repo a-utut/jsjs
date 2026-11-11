@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Array Objects</title>
+</head>
+
+<body>
+
+    <h2>JavaScript Array Objects</h2>
+
+    <h3>Create Array</h3>
+    Enter Maximum Length:
+    <input type="number" id="size">
+    <button onclick="createArray()">Create Array</button>
+
+    <p id="msg"></p>
+
+    <h3>Enter Array Elements</h3>
+    Enter Element:
+    <input type="text" id="value">
+    <button onclick="addElement()">Add Element</button>
+
+    <p id="arr1"></p>
+
+    <h3>Append New Object</h3>
+    Enter Object:
+    <input type="text" id="obj">
+    <button onclick="appendObject()">Append Object</button>
+
+    <p id="result"></p>
+    <p id="check"></p>
+
+    <h3>Current Array</h3>
+    <p id="current"></p>
+
+    <script>
+
+        let arr = [];
+        let max = 0;
+
+        // Create Array
+        function createArray() {
+            max = Number(document.getElementById("size").value);
+            arr = [];
+
+            if (max <= 0) {
+                document.getElementById("msg").innerHTML = "Enter valid size";
+                return;
+            }
+
+            document.getElementById("msg").innerHTML = "Array created";
+            showArray();
+        }
+
+        // Add Elements
+        function addElement() {
+            if (arr.length >= max) {
+                alert("Array is full");
+                return;
+            }
+
+            let value = document.getElementById("value").value;
+
+            try {
+                value = JSON.parse(value);
+            }
+            catch {
+                // Keep value as string
+            }
+
+            arr.push(value);
+
+            document.getElementById("arr1").innerHTML = JSON.stringify(arr);
+            document.getElementById("value").value = "";
+
+            showArray();
+        }
+
+        // Append Object
+        function appendObject() {
+            if (arr.length < max) {
+                alert("Fill the array first");
+                return;
+            }
+
+            let obj = document.getElementById("obj").value;
+
+            try {
+                obj = JSON.parse(obj);
+            }
+            catch {
+                // Keep value as string
+            }
+
+            arr.push(obj);
+
+            document.getElementById("result").innerHTML =
+                "Appended Object: " + JSON.stringify(obj);
+
+            if (Array.isArray(obj)) {
+                document.getElementById("check").innerHTML =
+                    "Yes, it is an Array";
+            }
+            else {
+                document.getElementById("check").innerHTML =
+                    "No, it is not an Array";
+            }
+
+            showArray();
+        }
+
+        // Display Current Array
+        function showArray() {
+            document.getElementById("current").innerHTML =
+                JSON.stringify(arr);
+        }
+
+    </script>
+
+</body>
+
+</html>
